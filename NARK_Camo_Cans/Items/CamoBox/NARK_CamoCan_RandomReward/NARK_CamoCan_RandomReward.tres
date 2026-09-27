@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/ItemData.gd" id="1"]
+
+[resource]
+rarity = 4
+script = ExtResource("1")
+file = "NARK_CamoCan_RandomReward"
+name = "Random Camo Can"
+inventory = "Random Camo"
+rotated = "Random Camo"
+equipment = "Random Camo"
+display = "Random Camo"
+type = "Misc"
+weight = 0.0
+value = 0
+size = Vector2(1, 2)
+audio = null
+showAmount = false
+showCondition = false
+repairs = false
+civilian = false
+military = false
+orientation = 90.0
+wallOffset = 0.02
+
+generalist = false
+
+gunsmith = false
+
+doctor = false

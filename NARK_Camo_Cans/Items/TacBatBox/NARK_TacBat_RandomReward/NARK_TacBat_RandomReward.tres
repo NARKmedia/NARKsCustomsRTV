@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/ItemData.gd" id="1"]
+
+[resource]
+rarity = 4
+script = ExtResource("1")
+file = "NARK_TacBat_RandomReward"
+name = "Random Tac Bat"
+inventory = "Random Bat"
+rotated = "Random Bat"
+equipment = "Random Bat"
+display = "Random Bat"
+type = "Misc"
+weight = 0.0
+value = 0
+size = Vector2(1, 1)
+audio = null
+showAmount = false
+showCondition = false
+repairs = false
+civilian = false
+military = false
+gunsmith = false
+generalist = false
+doctor = false
+orientation = 90.0
+wallOffset = 0.02

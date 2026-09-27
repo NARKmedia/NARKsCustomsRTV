@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/ItemData.gd" id="1"]
+
+[resource]
+rarity = 4
+script = ExtResource("1")
+file = "NARK_TacBat_Pink"
+name = "Tac Bat! (Pink)"
+inventory = "Tac Bat"
+rotated = "Tac Bat"
+equipment = "Tac Bat"
+display = "Tac Bat"
+type = "Attachment"
+subtype = "TacBat"
+weight = 0.08
+value = 1200
+size = Vector2(1, 1)
+audio = null
+compatible = []
+material = null
+showAmount = false
+showCondition = false
+repairs = false
+civilian = false
+military = false
+generalist = false
+gunsmith = false
+doctor = false
+orientation = 90.0
+wallOffset = 0.02

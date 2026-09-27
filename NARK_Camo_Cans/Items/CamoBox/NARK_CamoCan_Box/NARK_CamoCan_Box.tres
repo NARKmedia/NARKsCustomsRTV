@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/ItemData.gd" id="1"]
+
+[resource]
+rarity = 3
+script = ExtResource("1")
+file = "NARK_CamoCan_Box"
+name = "Camo Can Box"
+inventory = "Camo Box"
+rotated = "Camo Box"
+equipment = "Camo Box"
+display = "Camo Box"
+type = "Misc"
+weight = 0.35
+value = 4500
+size = Vector2(1, 2)
+audio = null
+showAmount = false
+showCondition = false
+repairs = false
+civilian = false
+military = false
+gunsmith = true
+orientation = 90.0
+wallOffset = 0.02
+
+generalist = false
+doctor = false

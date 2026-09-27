@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Script" path="res://Scripts/ItemData.gd" id="1"]
+
+[resource]
+rarity = 3
+script = ExtResource("1")
+file = "NARK_TacBat_Box"
+name = "Tac Bat Box"
+inventory = "Tac Box"
+rotated = "Tac Box"
+equipment = "Tac Box"
+display = "Tac Box"
+type = "Misc"
+weight = 0.15
+value = 2500
+size = Vector2(1, 1)
+audio = null
+showAmount = false
+showCondition = false
+repairs = false
+civilian = false
+military = false
+gunsmith = true
+generalist = false
+doctor = false
+orientation = 90.0
+wallOffset = 0.02
