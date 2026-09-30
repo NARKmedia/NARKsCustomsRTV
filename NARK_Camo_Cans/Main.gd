@@ -804,6 +804,76 @@ const CAMO_CANS := [
 
 const WEAPON_RGB_MASKS := [
 	{
+		"id": "HP_DA_Main",
+		"label": "HP-DA / Main",
+		"target_files": [
+			"HP_DA"
+		],
+		"target_names": [
+			"HP-DA"
+		],
+		"target_textures": [
+			"res://Items/Weapons/HP-DA/Files/TX_HP-DA_AL.png"
+		],
+		"target_texture_names": [
+			"TX_HP-DA_AL.png"
+		],
+		"rgb_mask_path": "res://NARK_Camo_Cans/WeaponMasks/HP_DA/Main/TX_HP_DA_Main_RGB_Mask.png"
+	},
+	{
+		"id": "Jatimatic_Main",
+		"label": "Jatimatic / Main",
+		"target_files": [
+			"Jatimatic"
+		],
+		"target_names": [
+			"Jatimatic"
+		],
+		"target_textures": [
+			"res://Items/Weapons/Jatimatic/Files/TX_Jatimatic_AL.png"
+		],
+		"target_texture_names": [
+			"TX_Jatimatic_AL.png"
+		],
+		"rgb_mask_path": "res://NARK_Camo_Cans/WeaponMasks/Jatimatic/Main/TX_Jatimatic_Main_RGB_Mask.png"
+	},
+	{
+		"id": "M28_Main",
+		"label": "M28 / Main",
+		"target_files": [
+			"M28"
+		],
+		"target_names": [
+			"M28"
+		],
+		"target_textures": [
+			"res://Items/Weapons/M28/Files/TX_M28_AL.png"
+		],
+		"target_texture_names": [
+			"TX_M28_AL.png"
+		],
+		"rgb_mask_path": "res://NARK_Camo_Cans/WeaponMasks/M28/Main/TX_M28_Main_RGB_Mask.png"
+	},
+	{
+		"id": "M28_MOD_Main",
+		"label": "M28 (MOD) / Main",
+		"target_files": [
+			"M28_MOD"
+		],
+		"target_names": [
+			"M28 (MOD)"
+		],
+		"target_textures": [
+			"res://Items/Weapons/M28/Files/TX_M28_MOD_AL.png",
+			"res://Items/Weapons/M28/Files/TX_M28_MOD_Winter_AL.png"
+		],
+		"target_texture_names": [
+			"TX_M28_MOD_AL.png",
+			"TX_M28_MOD_Winter_AL.png"
+		],
+		"rgb_mask_path": "res://NARK_Camo_Cans/WeaponMasks/M28_MOD/Main/TX_M28_MOD_Main_RGB_Mask.png"
+	},
+	{
 		"id": "AK_12_Main",
 		"label": "KA-12 / AK-12 / Main",
 		"target_files": [
@@ -2354,7 +2424,7 @@ func _ready() -> void:
 	set_process(true)
 	randomize()
 	_reward_rng.randomize()
-	_log("autoload loaded - 0.1.2")
+	_log("autoload loaded - 0.1.3")
 	call_deferred("_register_mod_content")
 
 
