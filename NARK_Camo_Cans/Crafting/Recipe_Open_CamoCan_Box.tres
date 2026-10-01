@@ -1,6 +1,5 @@
 [gd_resource type="Resource" script_class="RecipeData" format=3]
 
-[ext_resource type="Resource" path="res://Audio/Crafting/Craft_Metal.tres" id="1"]
 [ext_resource type="Resource" path="res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_Box/NARK_CamoCan_Box.tres" id="2"]
 [ext_resource type="Resource" path="res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_RandomReward/NARK_CamoCan_RandomReward.tres" id="3"]
 [ext_resource type="Script" path="res://Scripts/RecipeData.gd" id="4"]
@@ -9,7 +8,6 @@
 script = ExtResource("4")
 name = "Open Camo Can Box"
 time = 1.0
-audio = ExtResource("1")
 input = [ExtResource("2")]
 output = [ExtResource("3")]
 metadata/_custom_type_script = "uid://b0blnq3ea0tae"

@@ -2833,9 +2833,21 @@ func _register_camo_reward_placeholder() -> void:
 	_register_or_skip(_lib.Registry.ITEMS, item_id, data)
 
 
+func _load_box_recipe(path: String):
+	var recipe = _safe_load(path)
+	if recipe == null:
+		return null
+	var source = _safe_load("res://Crafting/Weapons/Colt_1911_Repair.tres")
+	if source == null or source.get("audio") == null:
+		_log("ERROR: box crafting audio unavailable")
+		return null
+	recipe.set("audio", source.get("audio"))
+	return recipe
+
+
 func _register_camo_box_recipe() -> void:
 	var recipe_id := str(CAMO_BOX_RECIPE.get("id", "NARK_CamoCan_Box_Open_Recipe"))
-	var recipe = _safe_load(str(CAMO_BOX_RECIPE.get("path", "")))
+	var recipe = _load_box_recipe(str(CAMO_BOX_RECIPE.get("path", "")))
 	if recipe == null:
 		_log("ERROR: camo box recipe failed to load")
 		return
@@ -2900,7 +2912,7 @@ func _register_tac_bat_reward_placeholder() -> void:
 
 func _register_tac_bat_box_recipe() -> void:
 	var recipe_id = str(TAC_BAT_BOX_RECIPE.get("id", "NARK_TacBat_Box_Open_Recipe"))
-	var recipe = _safe_load(str(TAC_BAT_BOX_RECIPE.get("path", "")))
+	var recipe = _load_box_recipe(str(TAC_BAT_BOX_RECIPE.get("path", "")))
 	if recipe == null:
 		_log("ERROR: tac bat box recipe failed to load")
 		return
@@ -2936,7 +2948,7 @@ func _register_pro_box() -> void:
 
 func _register_pro_box_recipe() -> void:
 	var recipe_id = str(PRO_BOX_RECIPE.get("id", "NARK_ProBox_Open_Recipe"))
-	var recipe = _safe_load(str(PRO_BOX_RECIPE.get("path", "")))
+	var recipe = _load_box_recipe(str(PRO_BOX_RECIPE.get("path", "")))
 	if recipe == null:
 		_log("ERROR: Pro Box recipe failed to load")
 		return
