@@ -2407,6 +2407,12 @@ var _tac_bat_box_data = null
 var _tac_bat_reward_placeholder_data = null
 var _reward_rng := RandomNumberGenerator.new()
 var _reward_scan_pending := false
+var _reward_scan_roots := {}
+var _texture_cache := {}
+var _rig_scan_scene_id := 0
+var _rig_manager_ref: WeakRef
+var _rig_search_after_msec := 0
+const MATERIAL_CACHE_LIMIT := 64
 var _can_textures := {}
 var _can_rgb_slot_textures := {}
 var _weapon_rgb_masks_by_texture := {}
@@ -2424,12 +2430,14 @@ func _ready() -> void:
 	set_process(true)
 	randomize()
 	_reward_rng.randomize()
-	_log("autoload loaded - 0.1.3")
+	_log("autoload loaded - 0.1.5-perftest.1")
 	call_deferred("_register_mod_content")
 
 
 func _exit_tree() -> void:
 	_compat_cleanup_queued.clear()
+	_reward_scan_roots.clear()
+	_texture_cache.clear()
 
 
 	if is_inside_tree():
@@ -2589,16 +2597,28 @@ func _apply_common_item_values(item_data: Resource, cfg: Dictionary, item_type: 
 
 
 
-func _load_png_texture(path: String) -> Texture2D:
-	if path == "" or not FileAccess.file_exists(path):
-		_log("png missing: " + str(path))
+func _load_png_texture(path: String, mipmaps: bool = true) -> Texture2D:
+	if path == "":
+		return null
+	var cache_key := path + (":mip" if mipmaps else ":plain")
+	var cached = _texture_cache.get(cache_key)
+	if cached is WeakRef:
+		var texture = cached.get_ref()
+		if texture is Texture2D:
+			return texture
+	if not FileAccess.file_exists(path):
+		_log("png missing: " + path)
 		return null
 	var image := Image.new()
 	var err := image.load(path)
 	if err != OK:
-		_log("ERROR: image.load failed " + str(path) + " err=" + str(err))
+		_log("ERROR: image.load failed " + path + " err=" + str(err))
 		return null
-	return ImageTexture.create_from_image(image)
+	if mipmaps:
+		image.generate_mipmaps()
+	var texture := ImageTexture.create_from_image(image)
+	_texture_cache[cache_key] = weakref(texture)
+	return texture
 
 
 func _safe_load(path: String):
@@ -2620,6 +2640,7 @@ func _make_tetris_scene(item_id: String, icon: Texture2D, size_x: int, size_y: i
 	sprite.scale = Vector2(0.5, 0.5)
 	var packed := PackedScene.new()
 	packed.pack(sprite)
+	sprite.free()
 	return packed
 
 
@@ -2673,20 +2694,19 @@ func _register_weapon_rgb_masks() -> void:
 	_weapon_rgb_masks_by_texture.clear()
 	for mask_cfg in WEAPON_RGB_MASKS:
 		var mask_path := str(mask_cfg.get("rgb_mask_path", ""))
-		var mask_tex = _load_png_texture(mask_path)
-		if mask_tex == null:
+		if not FileAccess.file_exists(mask_path):
 			_log("weapon rgb mask skipped: " + str(mask_cfg.get("id", "")) + " missing " + mask_path)
 			continue
 
 		for target_texture in mask_cfg.get("target_textures", []):
 			var key := _texture_key(str(target_texture))
 			if key != "":
-				_weapon_rgb_masks_by_texture[key] = mask_tex
+				_weapon_rgb_masks_by_texture[key] = mask_path
 
 		for target_name in mask_cfg.get("target_texture_names", []):
 			var name_key := _texture_key(str(target_name))
 			if name_key != "":
-				_weapon_rgb_masks_by_texture[name_key] = mask_tex
+				_weapon_rgb_masks_by_texture[name_key] = mask_path
 
 	_log("weapon rgb masks registered: " + str(_weapon_rgb_masks_by_texture.size()))
 
@@ -2709,13 +2729,20 @@ func _register_camo_can(cfg: Dictionary) -> void:
 	data.set("generalist", false)
 	data.set("gunsmith", false)
 	data.set("doctor", false)
-	var icon = _load_png_texture(str(cfg.get("icon_path", "")))
+	var icon = _load_png_texture(str(cfg.get("icon_path", "")), false)
 	if icon != null:
 		data.set("icon", icon)
 		data.set("tetris", _make_tetris_scene(can_id, icon, int(cfg.get("size", [1,2])[0]), int(cfg.get("size", [1,2])[1])))
 	if scene is PackedScene:
 		scene = _patch_camo_can_scene(scene, str(cfg.get("spray_albedo_path", "")))
 	_can_data[can_id] = data
+	_register_item_scene_and_pools(cfg, can_id, data, scene)
+
+
+func _ensure_camo_textures(cfg: Dictionary) -> void:
+	var can_id := str(cfg.get("id", ""))
+	if _can_textures.has(can_id):
+		return
 	_can_textures[can_id] = _load_png_texture(str(cfg.get("paint_albedo_path", "")))
 	if str(cfg.get("paint_mode", "replace")) == "rgb_slots":
 		var slot_textures := []
@@ -2723,7 +2750,6 @@ func _register_camo_can(cfg: Dictionary) -> void:
 			slot_textures.append(_load_png_texture(str(slot_path)))
 		_can_rgb_slot_textures[can_id] = slot_textures
 	_can_fallback_materials[can_id] = _make_vostok_material(_can_textures.get(can_id), null, true, true)
-	_register_item_scene_and_pools(cfg, can_id, data, scene)
 
 
 func _patch_camo_can_scene(scene: PackedScene, spray_albedo_path: String) -> PackedScene:
@@ -2736,7 +2762,9 @@ func _patch_camo_can_scene(scene: PackedScene, spray_albedo_path: String) -> Pac
 	for node_name in ["LOD0", "LOD1"]:
 		_apply_material(instance.get_node_or_null(node_name), material)
 	var packed := PackedScene.new()
-	return packed if packed.pack(instance) == OK else scene
+	var packed_ok := packed.pack(instance) == OK
+	instance.free()
+	return packed if packed_ok else scene
 
 
 
@@ -2759,7 +2787,7 @@ func _register_tac_bat(cfg: Dictionary) -> void:
 	data.set("generalist", false)
 	data.set("gunsmith", false)
 	data.set("doctor", false)
-	var icon = _load_png_texture(str(cfg.get("icon_path", "")))
+	var icon = _load_png_texture(str(cfg.get("icon_path", "")), false)
 	if icon != null:
 		data.set("icon", icon)
 		data.set("tetris", _make_tetris_scene(bat_id, icon, int(cfg.get("size", [1,1])[0]), int(cfg.get("size", [1,1])[1])))
@@ -2779,7 +2807,9 @@ func _patch_tac_bat_scene(scene: PackedScene, albedo_path: String) -> PackedScen
 	for node_name in ["LOD0", "LOD1"]:
 		_apply_material(instance.get_node_or_null(node_name), material)
 	var packed := PackedScene.new()
-	return packed if packed.pack(instance) == OK else scene
+	var packed_ok := packed.pack(instance) == OK
+	instance.free()
+	return packed if packed_ok else scene
 
 
 func _register_camo_box() -> void:
@@ -2799,7 +2829,7 @@ func _register_camo_box() -> void:
 	data.set("generalist", false)
 	data.set("gunsmith", true)
 	data.set("doctor", false)
-	var icon = _load_png_texture(str(CAMO_BOX.get("icon_path", "")))
+	var icon = _load_png_texture(str(CAMO_BOX.get("icon_path", "")), false)
 	if icon != null:
 		data.set("icon", icon)
 		data.set("tetris", _make_tetris_scene(box_id, icon, int(CAMO_BOX.get("size", [1,2])[0]), int(CAMO_BOX.get("size", [1,2])[1])))
@@ -2822,7 +2852,7 @@ func _register_camo_reward_placeholder() -> void:
 	data.set("repairs", false)
 	data.set("civilian", false)
 	data.set("military", false)
-	var icon = _load_png_texture(str(CAMO_REWARD_PLACEHOLDER.get("icon_path", "")))
+	var icon = _load_png_texture(str(CAMO_REWARD_PLACEHOLDER.get("icon_path", "")), false)
 	if icon != null:
 		data.set("icon", icon)
 		data.set("tetris", _make_tetris_scene(item_id, icon, int(CAMO_REWARD_PLACEHOLDER.get("size", [1,2])[0]), int(CAMO_REWARD_PLACEHOLDER.get("size", [1,2])[1])))
@@ -2873,7 +2903,7 @@ func _register_tac_bat_box() -> void:
 	data.set("generalist", false)
 	data.set("gunsmith", true)
 	data.set("doctor", false)
-	var icon = _load_png_texture(str(TAC_BAT_BOX.get("icon_path", "")))
+	var icon = _load_png_texture(str(TAC_BAT_BOX.get("icon_path", "")), false)
 	if icon != null:
 		data.set("icon", icon)
 		data.set("tetris", _make_tetris_scene(box_id, icon, int(TAC_BAT_BOX.get("size", [1,1])[0]), int(TAC_BAT_BOX.get("size", [1,1])[1])))
@@ -2899,7 +2929,7 @@ func _register_tac_bat_reward_placeholder() -> void:
 	data.set("generalist", false)
 	data.set("gunsmith", false)
 	data.set("doctor", false)
-	var icon = _load_png_texture(str(TAC_BAT_REWARD_PLACEHOLDER.get("icon_path", "")))
+	var icon = _load_png_texture(str(TAC_BAT_REWARD_PLACEHOLDER.get("icon_path", "")), false)
 	if icon != null:
 		data.set("icon", icon)
 		data.set("tetris", _make_tetris_scene(item_id, icon, int(TAC_BAT_REWARD_PLACEHOLDER.get("size", [1,1])[0]), int(TAC_BAT_REWARD_PLACEHOLDER.get("size", [1,1])[1])))
@@ -2937,7 +2967,7 @@ func _register_pro_box() -> void:
 	data.set("generalist", false)
 	data.set("gunsmith", true)
 	data.set("doctor", false)
-	var icon = _load_png_texture(str(PRO_BOX.get("icon_path", "")))
+	var icon = _load_png_texture(str(PRO_BOX.get("icon_path", "")), false)
 	if icon != null:
 		data.set("icon", icon)
 		data.set("tetris", _make_tetris_scene(box_id, icon, int(PRO_BOX.get("size", [3,2])[0]), int(PRO_BOX.get("size", [3,2])[1])))
@@ -2967,14 +2997,18 @@ func _patch_camo_box_scene(scene: PackedScene, albedo_path: String) -> PackedSce
 	for node_name in ["LOD0", "LOD1"]:
 		_apply_material(instance.get_node_or_null(node_name), material)
 	var packed := PackedScene.new()
-	return packed if packed.pack(instance) == OK else scene
+	var packed_ok := packed.pack(instance) == OK
+	instance.free()
+	return packed if packed_ok else scene
 
 
 
 
-func _on_interface_create_post(a = null, b = null, c = null, d = null, e = null, f = null, g = null):
-
-
+func _on_interface_create_post(slot_data = null, target_grid = null, _use_drop = null, _result = null):
+	if _reward_placeholder_kind(slot_data) == "":
+		return
+	if target_grid is Node and is_instance_valid(target_grid):
+		_reward_scan_roots[target_grid.get_instance_id()] = weakref(target_grid)
 	if _reward_scan_pending:
 		return
 	_reward_scan_pending = true
@@ -2982,24 +3016,28 @@ func _on_interface_create_post(a = null, b = null, c = null, d = null, e = null,
 
 
 func _delayed_scan_temp_reward_items() -> void:
-
-
-	var converted_any = false
 	for i in range(12):
 		await get_tree().create_timer(0.18).timeout
-		if _scan_temp_reward_items():
-			converted_any = true
-			if i >= 3:
-				_reward_scan_pending = false
-				return
+		if _scan_temp_reward_items() and i >= 3:
+			break
+	_reward_scan_roots.clear()
 	_reward_scan_pending = false
 
 
 func _scan_temp_reward_items() -> bool:
-	var scene = get_tree().current_scene
-	if scene == null:
-		return false
-	return _scan_temp_reward_items_recursive_count(scene) > 0
+	var converted := 0
+	for ref in _reward_scan_roots.values():
+		var node = ref.get_ref()
+		if is_instance_valid(node) and node.is_inside_tree():
+			converted += _scan_temp_reward_items_recursive_count(node)
+	for item in get_tree().get_nodes_in_group("Item"):
+		if not is_instance_valid(item) or not ("slotData" in item):
+			continue
+		var kind := _reward_placeholder_kind(item.slotData)
+		if kind != "" and _node_is_safe_reward_inventory_slot(item):
+			if _replace_reward_placeholder_owner(item, kind):
+				converted += 1
+	return converted > 0
 
 
 func _scan_temp_reward_items_recursive_count(node) -> int:
@@ -3498,11 +3536,23 @@ func _scan_active_weapon_rigs() -> void:
 	var scene = get_tree().current_scene
 	if scene == null:
 		return
-	var rig_manager = scene.get_node_or_null("Core/Player/RigManager")
-	if rig_manager == null:
-		rig_manager = scene.find_child("RigManager", true, false)
-	if rig_manager == null:
-		return
+	var scene_id := scene.get_instance_id()
+	if scene_id != _rig_scan_scene_id:
+		_single_pass_material_cache.clear()
+		_rig_scan_scene_id = scene_id
+		_rig_manager_ref = null
+		_rig_search_after_msec = 0
+	var rig_manager = _rig_manager_ref.get_ref() if _rig_manager_ref != null else null
+	if not is_instance_valid(rig_manager) or not rig_manager.is_inside_tree():
+		rig_manager = scene.get_node_or_null("Core/Camera/Manager")
+		if rig_manager == null:
+			rig_manager = scene.get_node_or_null("Core/Player/RigManager")
+		if rig_manager == null and Time.get_ticks_msec() >= _rig_search_after_msec:
+			_rig_search_after_msec = Time.get_ticks_msec() + 2000
+			rig_manager = scene.find_child("RigManager", true, false)
+		if rig_manager == null:
+			return
+		_rig_manager_ref = weakref(rig_manager)
 	for child in rig_manager.get_children():
 		if child is Node and is_instance_valid(child):
 			_configure_rig(child)
@@ -4201,6 +4251,7 @@ func _make_single_pass_rgb_camo_material(original, cfg: Dictionary, mask_tex, us
 		return null
 
 	var can_id = str(cfg.get("id", ""))
+	_ensure_camo_textures(cfg)
 	var slots = _can_rgb_slot_textures.get(can_id, [])
 	if not (slots is Array) or slots.size() < 3:
 		_log("single-pass camo skipped: slot textures missing for " + can_id)
@@ -4216,9 +4267,12 @@ func _make_single_pass_rgb_camo_material(original, cfg: Dictionary, mask_tex, us
 
 	var cache_key = _single_pass_cache_key(original, cfg, mask_tex, use_mask)
 	if _single_pass_material_cache.has(cache_key):
-		return _single_pass_material_cache[cache_key]
+		var cached = _single_pass_material_cache[cache_key]
+		_single_pass_material_cache.erase(cache_key)
+		_single_pass_material_cache[cache_key] = cached
+		return cached
 
-	var dup = original.duplicate(true)
+	var dup = original.duplicate(false)
 	if not (dup is ShaderMaterial):
 		return null
 
@@ -4263,6 +4317,8 @@ func _make_single_pass_rgb_camo_material(original, cfg: Dictionary, mask_tex, us
 	dup.set_shader_parameter("slot_roughness", Vector3(r_roughness, g_roughness, b_roughness))
 	dup.set_shader_parameter("slot_tiling", Vector3(r_tile, g_tile, b_tile))
 
+	while _single_pass_material_cache.size() >= MATERIAL_CACHE_LIMIT:
+		_single_pass_material_cache.erase(_single_pass_material_cache.keys()[0])
 	_single_pass_material_cache[cache_key] = dup
 	return dup
 
@@ -4429,7 +4485,7 @@ func _mask_texture_for_original_material(material):
 		return null
 	var key := _texture_key(str(tex.resource_path))
 	if key != "" and _weapon_rgb_masks_by_texture.has(key):
-		return _weapon_rgb_masks_by_texture[key]
+		return _load_png_texture(str(_weapon_rgb_masks_by_texture[key]))
 	return null
 
 
@@ -4482,6 +4538,7 @@ func _make_camo_material_for_mesh(mesh_node, cfg: Dictionary):
 
 
 func _make_replacement_material_for_original(original, can_id: String):
+	_ensure_camo_textures(_get_can_cfg(can_id))
 	var texture = _can_textures.get(can_id)
 	if texture == null:
 		return _can_fallback_materials.get(can_id)
@@ -4518,6 +4575,7 @@ func _array_float(values, index: int, fallback: float, min_value: float, max_val
 
 func _make_next_pass_overlay_material(cfg: Dictionary):
 	var can_id := str(cfg.get("id", ""))
+	_ensure_camo_textures(cfg)
 	var paint_texture = _can_textures.get(can_id)
 	if paint_texture == null:
 		return null
