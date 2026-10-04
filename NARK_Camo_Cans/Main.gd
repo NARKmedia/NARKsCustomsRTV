@@ -799,6 +799,324 @@ const CAMO_CANS := [
 			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_MilitaryRedwood/Files/TX_NARK_CamoCan_MilitaryRedwood_Slot_Green_AL.png",
 			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_MilitaryRedwood/Files/TX_NARK_CamoCan_MilitaryRedwood_Slot_Blue_AL.png"
 		]
+	},
+	{
+		"id": "NARK_CamoCan_Avalanche",
+		"name": "Camo Can! (Avalanche)",
+		"short_name": "Camo",
+		"mode": "inclusive",
+		"target_preset": "ALL",
+		"target_files": [],
+		"target_names": [],
+		"target_textures": [],
+		"texture_scope": "main",
+		"paint_mode": "rgb_slots",
+		"blend_strength": 0.85,
+		"slot_blend_strengths": [
+			0.2,
+			0.35,
+			0.8
+		],
+		"slot_metallic_values": [
+			0.77,
+			0.3,
+			0.3
+		],
+		"slot_roughness_values": [
+			0.27,
+			0.27,
+			0.71
+		],
+		"slot_tile_values": [
+			2.0,
+			3.0,
+			1.0
+		],
+		"weight": 0.25,
+		"value": 10000,
+		"rarity": 4,
+		"economy_override": true,
+		"size": [
+			1,
+			2
+		],
+		"traders": [],
+		"loot_tables": [],
+		"item_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Avalanche/NARK_CamoCan_Avalanche.tres",
+		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Avalanche/NARK_CamoCan_Avalanche.tscn",
+		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Avalanche/Files/Icon_NARK_CamoCan_Avalanche.png",
+		"spray_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Avalanche/Files/TX_NARK_CamoCan_Avalanche_Can_AL.png",
+		"paint_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Avalanche/Files/TX_NARK_CamoCan_Avalanche_Slot_Red_AL.png",
+		"slot_albedo_paths": [
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Avalanche/Files/TX_NARK_CamoCan_Avalanche_Slot_Red_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Avalanche/Files/TX_NARK_CamoCan_Avalanche_Slot_Green_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Avalanche/Files/TX_NARK_CamoCan_Avalanche_Slot_Blue_AL.png"
+		]
+	},
+	{
+		"id": "NARK_CamoCan_Network",
+		"name": "Camo Can! (Network)",
+		"short_name": "Camo",
+		"mode": "inclusive",
+		"target_preset": "ALL",
+		"target_files": [],
+		"target_names": [],
+		"target_textures": [],
+		"texture_scope": "main",
+		"paint_mode": "rgb_slots",
+		"blend_strength": 0.85,
+		"slot_blend_strengths": [
+			0.3,
+			0.7,
+			0.92
+		],
+		"slot_metallic_values": [
+			0.7,
+			0.9,
+			0.15
+		],
+		"slot_roughness_values": [
+			0.38,
+			0.2,
+			0.73
+		],
+		"slot_tile_values": [
+			3.0,
+			2.0,
+			2.0
+		],
+		"weight": 0.25,
+		"value": 1,
+		"rarity": 4,
+		"economy_override": false,
+		"size": [
+			1,
+			2
+		],
+		"traders": [],
+		"loot_tables": [],
+		"item_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Network/NARK_CamoCan_Network.tres",
+		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Network/NARK_CamoCan_Network.tscn",
+		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Network/Files/Icon_NARK_CamoCan_Network.png",
+		"spray_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Network/Files/TX_NARK_CamoCan_Network_Can_AL.png",
+		"paint_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Network/Files/TX_NARK_CamoCan_Network_red_e5d944cbb3ddc43a.png",
+		"slot_albedo_paths": [
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Network/Files/TX_NARK_CamoCan_Network_red_e5d944cbb3ddc43a.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Network/Files/TX_NARK_CamoCan_Network_Slot_Green_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Network/Files/TX_NARK_CamoCan_Network_Slot_Blue_AL.png"
+		]
+	},
+	{
+		"id": "NARK_CamoCan_Starvox",
+		"name": "Camo Can! (Starvox)",
+		"short_name": "Camo",
+		"mode": "inclusive",
+		"target_preset": "ALL",
+		"target_files": [],
+		"target_names": [],
+		"target_textures": [],
+		"texture_scope": "main",
+		"paint_mode": "rgb_slots",
+		"blend_strength": 0.85,
+		"slot_blend_strengths": [
+			0.3,
+			0.7,
+			0.92
+		],
+		"slot_metallic_values": [
+			0.7,
+			0.9,
+			0.15
+		],
+		"slot_roughness_values": [
+			0.38,
+			0.2,
+			0.73
+		],
+		"slot_tile_values": [
+			40.0,
+			2.0,
+			2.0
+		],
+		"weight": 0.25,
+		"value": 1,
+		"rarity": 4,
+		"economy_override": false,
+		"size": [
+			1,
+			2
+		],
+		"traders": [],
+		"loot_tables": [],
+		"item_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Starvox/NARK_CamoCan_Starvox.tres",
+		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Starvox/NARK_CamoCan_Starvox.tscn",
+		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Starvox/Files/Icon_NARK_CamoCan_Starvox.png",
+		"spray_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Starvox/Files/TX_NARK_CamoCan_Starvox_Can_AL.png",
+		"paint_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Starvox/Files/TX_NARK_CamoCan_Starvox_red_63e13fe04cf67e5b.png",
+		"slot_albedo_paths": [
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Starvox/Files/TX_NARK_CamoCan_Starvox_red_63e13fe04cf67e5b.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Starvox/Files/TX_NARK_CamoCan_Starvox_Slot_Green_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Starvox/Files/TX_NARK_CamoCan_Starvox_Slot_Blue_AL.png"
+		]
+	},
+	{
+		"id": "NARK_CamoCan_Nark",
+		"name": "Camo Can! (Nark)",
+		"short_name": "Camo",
+		"mode": "inclusive",
+		"target_preset": "ALL",
+		"target_files": [],
+		"target_names": [],
+		"target_textures": [],
+		"texture_scope": "main",
+		"paint_mode": "rgb_slots",
+		"blend_strength": 0.85,
+		"slot_blend_strengths": [
+			0.3,
+			0.7,
+			0.92
+		],
+		"slot_metallic_values": [
+			0.8,
+			0.9,
+			0.15
+		],
+		"slot_roughness_values": [
+			0.38,
+			0.2,
+			0.73
+		],
+		"slot_tile_values": [
+			3.0,
+			3.0,
+			3.0
+		],
+		"weight": 0.25,
+		"value": 1,
+		"rarity": 4,
+		"economy_override": false,
+		"size": [
+			1,
+			2
+		],
+		"traders": [],
+		"loot_tables": [],
+		"item_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Nark/NARK_CamoCan_Nark.tres",
+		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Nark/NARK_CamoCan_Nark.tscn",
+		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Nark/Files/Icon_NARK_CamoCan_Nark.png",
+		"spray_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Nark/Files/TX_NARK_CamoCan_Nark_Can_AL.png",
+		"paint_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Nark/Files/TX_NARK_CamoCan_Nark_red_64e4d1a23357b7ae.png",
+		"slot_albedo_paths": [
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Nark/Files/TX_NARK_CamoCan_Nark_red_64e4d1a23357b7ae.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Nark/Files/TX_NARK_CamoCan_Nark_green_fee9c70ea4902de3.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Nark/Files/TX_NARK_CamoCan_Nark_Slot_Blue_AL.png"
+		]
+	},
+	{
+		"id": "NARK_CamoCan_Minty",
+		"name": "Camo Can! (Minty)",
+		"short_name": "Camo",
+		"mode": "inclusive",
+		"target_preset": "ALL",
+		"target_files": [],
+		"target_names": [],
+		"target_textures": [],
+		"texture_scope": "main",
+		"paint_mode": "rgb_slots",
+		"blend_strength": 0.85,
+		"slot_blend_strengths": [
+			0.2,
+			0.35,
+			0.8
+		],
+		"slot_metallic_values": [
+			0.77,
+			0.3,
+			0.3
+		],
+		"slot_roughness_values": [
+			0.27,
+			0.27,
+			0.71
+		],
+		"slot_tile_values": [
+			2.0,
+			3.0,
+			1.0
+		],
+		"weight": 0.25,
+		"value": 10000,
+		"rarity": 4,
+		"economy_override": true,
+		"size": [
+			1,
+			2
+		],
+		"traders": [],
+		"loot_tables": [],
+		"item_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Minty/NARK_CamoCan_Minty.tres",
+		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Minty/NARK_CamoCan_Minty.tscn",
+		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Minty/Files/Icon_NARK_CamoCan_Minty.png",
+		"spray_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Minty/Files/TX_NARK_CamoCan_Minty_Can_AL.png",
+		"paint_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Minty/Files/TX_NARK_CamoCan_Minty_Slot_Red_AL.png",
+		"slot_albedo_paths": [
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Minty/Files/TX_NARK_CamoCan_Minty_Slot_Red_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Minty/Files/TX_NARK_CamoCan_Minty_Slot_Green_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Minty/Files/TX_NARK_CamoCan_Minty_Slot_Blue_AL.png"
+		]
+	},
+	{
+		"id": "NARK_CamoCan_FDE",
+		"name": "Camo Can! (FDE)",
+		"short_name": "Camo",
+		"mode": "inclusive",
+		"target_preset": "ALL",
+		"target_files": [],
+		"target_names": [],
+		"target_textures": [],
+		"texture_scope": "main",
+		"paint_mode": "rgb_slots",
+		"blend_strength": 0.77,
+		"slot_blend_strengths": [
+			0.7,
+			0.7,
+			0.72
+		],
+		"slot_metallic_values": [
+			0.2,
+			0.3,
+			0.02
+		],
+		"slot_roughness_values": [
+			0.8,
+			0.8,
+			0.73
+		],
+		"slot_tile_values": [
+			4.0,
+			2.0,
+			2.0
+		],
+		"weight": 0.25,
+		"value": 1,
+		"rarity": 4,
+		"economy_override": false,
+		"size": [
+			1,
+			2
+		],
+		"traders": [],
+		"loot_tables": [],
+		"item_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/NARK_CamoCan_FDE.tres",
+		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/NARK_CamoCan_FDE.tscn",
+		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/Files/Icon_NARK_CamoCan_FDE.png",
+		"spray_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/Files/TX_NARK_CamoCan_FDE_Can_AL.png",
+		"paint_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/Files/TX_NARK_CamoCan_FDE_red_ed9572535abe4991.png",
+		"slot_albedo_paths": [
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/Files/TX_NARK_CamoCan_FDE_red_ed9572535abe4991.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/Files/TX_NARK_CamoCan_FDE_Slot_Green_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/Files/TX_NARK_CamoCan_FDE_Slot_Blue_AL.png"
+		]
 	}
 ]
 
@@ -1847,6 +2165,34 @@ const TAC_BATS := [
 		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Yellow/Files/Icon_NARK_TacBat_Yellow.png",
 		"albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Yellow/Files/TX_NARK_TacBat_Yellow_AL.png",
 		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.tres"
+	},
+	{
+		"id": "NARK_TacBat_Chroma",
+		"name": "Tac Bat! (Chroma)",
+		"short_name": "Tac Bat",
+		"color": [
+			1,
+			0.02,
+			0,
+			1
+		],
+		"weight": 0.08,
+		"value": 1200,
+		"rarity": 4,
+		"economy_override": false,
+		"size": [
+			1,
+			1
+		],
+		"traders": [],
+		"loot_tables": [],
+		"item_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Chroma/NARK_TacBat_Chroma.tres",
+		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Chroma/NARK_TacBat_Chroma.tscn",
+		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Chroma/Files/Icon_NARK_TacBat_Chroma.png",
+		"albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Chroma/Files/TX_NARK_TacBat_Chroma_AL.png",
+		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.tres",
+		"chroma": true,
+		"reward_weight": 1
 	}
 ]
 
@@ -2422,6 +2768,12 @@ var _single_pass_material_cache := {}
 var _compat_cleanup_queued := {}
 var _nark_camo_shader = null
 var _tac_reticle_shader = null
+const CHROMA_CYCLE_SECONDS := 30.0
+const CHROMA_BAT_ID := "NARK_TacBat_Chroma"
+var _chroma_hue := 0.0
+var _chroma_color := Color(1.0, 0.0, 0.0, 1.0)
+var _chroma_materials := {}
+var _chroma_lights := {}
 
 
 func _ready() -> void:
@@ -2430,11 +2782,13 @@ func _ready() -> void:
 	set_process(true)
 	randomize()
 	_reward_rng.randomize()
-	_log("autoload loaded - 0.1.5-perftest.1")
+	_log("autoload loaded - 0.1.6")
 	call_deferred("_register_mod_content")
 
 
 func _exit_tree() -> void:
+	_chroma_materials.clear()
+	_chroma_lights.clear()
 	_compat_cleanup_queued.clear()
 	_reward_scan_roots.clear()
 	_texture_cache.clear()
@@ -2457,6 +2811,7 @@ func _exit_tree() -> void:
 func _process(delta) -> void:
 	if not _registered:
 		return
+	_update_chroma(delta)
 	_scan_accum += delta
 	_world_scan_accum += delta
 	if _scan_accum >= 0.25:
@@ -3169,7 +3524,9 @@ func _pick_tac_bat_box_reward_id() -> String:
 		var bat_id = str(cfg.get("id", ""))
 		if bat_id == "":
 			continue
-		weighted.append(bat_id)
+		var reward_weight := clampi(int(cfg.get("reward_weight", 8)), 1, 8)
+		for i in range(reward_weight):
+			weighted.append(bat_id)
 	if weighted.is_empty():
 		return ""
 	return str(weighted[_reward_rng.randi_range(0, weighted.size() - 1)])
@@ -3698,6 +4055,8 @@ func _restore_tac_bat_recursive(node) -> void:
 			_restore_tac_bat_recursive(child)
 
 func _tac_bat_color(cfg: Dictionary) -> Color:
+	if bool(cfg.get("chroma", false)):
+		return _chroma_color
 	var raw = cfg.get("color", [0.0, 1.0, 0.917647, 1.0])
 	if raw is Color:
 		return raw
@@ -3707,6 +4066,53 @@ func _tac_bat_color(cfg: Dictionary) -> Color:
 			a = float(raw[3])
 		return Color(float(raw[0]), float(raw[1]), float(raw[2]), a)
 	return Color(0.0, 1.0, 0.917647, 1.0)
+
+
+func _track_chroma_material(material, parameter: String, enabled: bool) -> void:
+	if not (material is ShaderMaterial):
+		return
+	var id = material.get_instance_id()
+	if enabled:
+		_chroma_materials[id] = {"ref": weakref(material), "parameter": parameter}
+	else:
+		_chroma_materials.erase(id)
+
+
+func _untrack_chroma_mesh(mesh_node) -> void:
+	if not (mesh_node is MeshInstance3D):
+		return
+	_track_chroma_material(mesh_node.material_override, "", false)
+	if mesh_node.mesh != null:
+		for i in range(mesh_node.mesh.get_surface_count()):
+			_track_chroma_material(mesh_node.get_surface_override_material(i), "", false)
+
+
+func _update_chroma(delta: float) -> void:
+	if _chroma_materials.is_empty() and _chroma_lights.is_empty():
+		return
+	_chroma_hue = fposmod(_chroma_hue + delta / CHROMA_CYCLE_SECONDS, 1.0)
+	_chroma_color = Color.from_hsv(_chroma_hue, 1.0, 1.0)
+	var tint_vector = Vector3(_chroma_color.r, _chroma_color.g, _chroma_color.b)
+	for id in _chroma_materials.keys():
+		var target = _chroma_materials[id]
+		var material = target["ref"].get_ref()
+		if not is_instance_valid(material):
+			_chroma_materials.erase(id)
+			continue
+		var parameter = str(target["parameter"])
+		if parameter == "tint_color":
+			material.set_shader_parameter(parameter, tint_vector)
+		else:
+			material.set_shader_parameter(parameter, _chroma_color)
+	for id in _chroma_lights.keys():
+		var light = _chroma_lights[id].get_ref()
+		if not is_instance_valid(light):
+			_chroma_lights.erase(id)
+			continue
+		if str(light.get_meta(TAC_BAT_APPLIED_ID_META, "")) != CHROMA_BAT_ID:
+			_chroma_lights.erase(id)
+			continue
+		light.light_color = _chroma_color
 
 
 func _apply_tac_bat_effects_recursive(node, cfg: Dictionary, bat_id: String) -> void:
@@ -3824,6 +4230,7 @@ func _set_tac_bat_color_shader(mat: ShaderMaterial, cfg: Dictionary) -> void:
 			mat.set_shader_parameter("intensity", saved_intensity)
 
 	mat.set_shader_parameter("tint_color", Vector3(color.r, color.g, color.b))
+	_track_chroma_material(mat, "tint_color", bool(cfg.get("chroma", false)))
 
 
 func _ensure_tac_bat_unique_reticle_mat(optic: Node3D, id: int):
@@ -3921,6 +4328,11 @@ func _restore_tac_bat_optic_node(node) -> void:
 	if node == null or not node.has_meta(TAC_BAT_OPTIC_ORIGINAL_META):
 		return
 
+	_track_chroma_material(node.get("reticle"), "", false)
+	var chroma_mesh = node.get("mesh")
+	if not (chroma_mesh is MeshInstance3D):
+		chroma_mesh = node.get_node_or_null("Mesh")
+	_untrack_chroma_mesh(chroma_mesh)
 	var original = node.get_meta(TAC_BAT_OPTIC_ORIGINAL_META)
 	if original is Dictionary:
 		if original.has("reticle"):
@@ -4061,6 +4473,7 @@ func _make_tac_bat_laser_material(original, cfg: Dictionary):
 	var material = original.duplicate(true)
 	if material is ShaderMaterial:
 		material.set_shader_parameter("tint", _tac_bat_color(cfg))
+		_track_chroma_material(material, "tint", bool(cfg.get("chroma", false)))
 		return material
 	return null
 
@@ -4109,6 +4522,7 @@ func _apply_tac_bat_mesh(mesh_node, cfg: Dictionary, bat_id: String) -> void:
 func _restore_tac_bat_mesh(mesh_node) -> void:
 	if not (mesh_node.has_meta(TAC_BAT_APPLIED_META) and mesh_node.has_meta(TAC_BAT_ORIGINAL_META)):
 		return
+	_untrack_chroma_mesh(mesh_node)
 	var original = mesh_node.get_meta(TAC_BAT_ORIGINAL_META)
 	if original is Dictionary:
 		mesh_node.material_override = original.get("override", null)
@@ -4134,11 +4548,14 @@ func _apply_tac_bat_light(node, cfg: Dictionary, bat_id: String) -> void:
 	node.set_meta(TAC_BAT_LIGHT_ORIGINAL_META, {"light_color": node.light_color})
 	node.set_meta(TAC_BAT_APPLIED_ID_META, bat_id)
 	node.light_color = _tac_bat_color(cfg)
+	if bool(cfg.get("chroma", false)):
+		_chroma_lights[node.get_instance_id()] = weakref(node)
 
 
 func _restore_tac_bat_light(node) -> void:
 	if node == null or not node.has_meta(TAC_BAT_LIGHT_ORIGINAL_META):
 		return
+	_chroma_lights.erase(node.get_instance_id())
 	var original = node.get_meta(TAC_BAT_LIGHT_ORIGINAL_META)
 	if original is Dictionary and original.has("light_color"):
 		node.light_color = original.get("light_color")
