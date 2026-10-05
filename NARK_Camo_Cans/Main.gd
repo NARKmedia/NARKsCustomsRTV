@@ -2034,7 +2034,7 @@ const TAC_BATS := [
 		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Red/NARK_TacBat_Red.tscn",
 		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Red/Files/Icon_NARK_TacBat_Red.png",
 		"albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Red/Files/TX_NARK_TacBat_Red_AL.png",
-		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.tres"
+		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.mesh"
 	},
 	{
 		"id": "NARK_TacBat_Green",
@@ -2060,7 +2060,7 @@ const TAC_BATS := [
 		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Green/NARK_TacBat_Green.tscn",
 		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Green/Files/Icon_NARK_TacBat_Green.png",
 		"albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Green/Files/TX_NARK_TacBat_Green_AL.png",
-		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.tres"
+		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.mesh"
 	},
 	{
 		"id": "NARK_TacBat_Blue",
@@ -2086,7 +2086,7 @@ const TAC_BATS := [
 		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Blue/NARK_TacBat_Blue.tscn",
 		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Blue/Files/Icon_NARK_TacBat_Blue.png",
 		"albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Blue/Files/TX_NARK_TacBat_Blue_AL.png",
-		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.tres"
+		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.mesh"
 	},
 	{
 		"id": "NARK_TacBat_Pink",
@@ -2112,7 +2112,7 @@ const TAC_BATS := [
 		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Pink/NARK_TacBat_Pink.tscn",
 		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Pink/Files/Icon_NARK_TacBat_Pink.png",
 		"albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Pink/Files/TX_NARK_TacBat_Pink_AL.png",
-		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.tres"
+		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.mesh"
 	},
 	{
 		"id": "NARK_TacBat_Cyan",
@@ -2138,7 +2138,7 @@ const TAC_BATS := [
 		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Cyan/NARK_TacBat_Cyan.tscn",
 		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Cyan/Files/Icon_NARK_TacBat_Cyan.png",
 		"albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Cyan/Files/TX_NARK_TacBat_Cyan_AL.png",
-		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.tres"
+		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.mesh"
 	},
 	{
 		"id": "NARK_TacBat_Yellow",
@@ -2164,7 +2164,7 @@ const TAC_BATS := [
 		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Yellow/NARK_TacBat_Yellow.tscn",
 		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Yellow/Files/Icon_NARK_TacBat_Yellow.png",
 		"albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Yellow/Files/TX_NARK_TacBat_Yellow_AL.png",
-		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.tres"
+		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.mesh"
 	},
 	{
 		"id": "NARK_TacBat_Chroma",
@@ -2190,7 +2190,7 @@ const TAC_BATS := [
 		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Chroma/NARK_TacBat_Chroma.tscn",
 		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Chroma/Files/Icon_NARK_TacBat_Chroma.png",
 		"albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_TacBat_Chroma/Files/TX_NARK_TacBat_Chroma_AL.png",
-		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.tres",
+		"mesh_path": "res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_NARK_TacBat_Mesh.mesh",
 		"chroma": true,
 		"reward_weight": 1
 	}
@@ -2217,7 +2217,7 @@ const CAMO_BOX := {
 	"scene_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_Box/NARK_CamoCan_Box.tscn",
 	"icon_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_Box/Files/Icon_NARK_CamoCan_Box.png",
 	"albedo_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_Box/Files/TX_NARK_CamoCan_Box_AL.png",
-	"mesh_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_Box/Files/MS_NARK_CamoCan_Box_Mesh.tres"
+	"mesh_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_Box/Files/MS_NARK_CamoCan_Box_Mesh.mesh"
 }
 const CAMO_REWARD_PLACEHOLDER := {
 	"id": "NARK_CamoCan_RandomReward",
@@ -2236,7 +2236,7 @@ const CAMO_REWARD_PLACEHOLDER := {
 	"scene_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_RandomReward/NARK_CamoCan_RandomReward.tscn",
 	"icon_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_RandomReward/Files/Icon_NARK_CamoCan_Box.png",
 	"albedo_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_RandomReward/Files/TX_NARK_CamoCan_Box_AL.png",
-	"mesh_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_RandomReward/Files/MS_NARK_CamoCan_Box_Mesh.tres"
+	"mesh_path": "res://NARK_Camo_Cans/Items/CamoBox/NARK_CamoCan_RandomReward/Files/MS_NARK_CamoCan_Box_Mesh.mesh"
 }
 const CAMO_BOX_RECIPE := {
 	"id": "NARK_CamoCan_Box_Open_Recipe",
@@ -2264,7 +2264,7 @@ const TAC_BAT_BOX := {
 	"scene_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_Box/NARK_TacBat_Box.tscn",
 	"icon_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_Box/Files/Icon_NARK_TacBat_Box.png",
 	"albedo_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_Box/Files/TX_NARK_TacBat_Box_AL.png",
-	"mesh_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_Box/Files/MS_NARK_TacBatBox_Mesh.tres"
+	"mesh_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_Box/Files/MS_NARK_TacBatBox_Mesh.mesh"
 }
 const TAC_BAT_REWARD_PLACEHOLDER := {
 	"id": "NARK_TacBat_RandomReward",
@@ -2283,7 +2283,7 @@ const TAC_BAT_REWARD_PLACEHOLDER := {
 	"scene_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_RandomReward/NARK_TacBat_RandomReward.tscn",
 	"icon_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_RandomReward/Files/Icon_NARK_TacBat_RandomReward.png",
 	"albedo_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_RandomReward/Files/TX_NARK_TacBat_Box_AL.png",
-	"mesh_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_RandomReward/Files/MS_NARK_TacBatBox_Mesh.tres"
+	"mesh_path": "res://NARK_Camo_Cans/Items/TacBatBox/NARK_TacBat_RandomReward/Files/MS_NARK_TacBatBox_Mesh.mesh"
 }
 const TAC_BAT_BOX_RECIPE := {
 	"id": "NARK_TacBat_Box_Open_Recipe",
@@ -2311,7 +2311,7 @@ const PRO_BOX := {
 	"scene_path": "res://NARK_Camo_Cans/Items/ProBox/NARK_ProBox/NARK_ProBox.tscn",
 	"icon_path": "res://NARK_Camo_Cans/Items/ProBox/NARK_ProBox/Files/Icon_NARK_ProBox.png",
 	"albedo_path": "res://NARK_Camo_Cans/Items/ProBox/NARK_ProBox/Files/TX_NARK_ProBox_AL.png",
-	"mesh_path": "res://NARK_Camo_Cans/Items/ProBox/NARK_ProBox/Files/MS_NARK_ProBox_Mesh.tres"
+	"mesh_path": "res://NARK_Camo_Cans/Items/ProBox/NARK_ProBox/Files/MS_NARK_ProBox_Mesh.mesh"
 }
 const PRO_BOX_RECIPE := {
 	"id": "NARK_ProBox_Open_Recipe",
@@ -2782,7 +2782,7 @@ func _ready() -> void:
 	set_process(true)
 	randomize()
 	_reward_rng.randomize()
-	_log("autoload loaded - 0.1.6")
+	_log("autoload loaded - 0.1.6-mesh-test.1")
 	call_deferred("_register_mod_content")
 
 

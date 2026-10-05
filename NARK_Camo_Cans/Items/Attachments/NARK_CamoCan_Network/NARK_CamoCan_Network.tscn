@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Pickup.gd" id="2"]
 [ext_resource type="Resource" path="res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Network/NARK_CamoCan_Network.tres" id="3"]
 [ext_resource type="Script" path="res://Scripts/SlotData.gd" id="4"]
-[ext_resource type="ArrayMesh" path="res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_Shared_CamoCan_Mesh.tres" id="5"]
+[ext_resource type="ArrayMesh" path="res://NARK_Camo_Cans/Items/Attachments/_Shared/Files/MS_Shared_CamoCan_Mesh.mesh" id="5"]
 
 [sub_resource type="Resource" id="Resource_slotdata"]
 script = ExtResource("4")
