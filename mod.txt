@@ -2,7 +2,7 @@
 replace_files=false
 id="nark_customs"
 name="NARK's Customs"
-version="0.1.6.3"
+version="0.1.7"
 priority=970
 author="NARK"
 
@@ -11,6 +11,7 @@ NARK_Camo_Cans="res://NARK_Camo_Cans/Main.gd"
 
 [hooks]
 res://Scripts/Interface.gd = "CombineCheck, Create"
+res://Scripts/Item.gd = "CombineSwap"
 res://Scripts/WeaponRig.gd = "_ready, Reload, FireEvent"
 res://Scripts/Laser.gd = "_ready, _input"
 

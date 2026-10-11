@@ -1122,6 +1122,57 @@ const CAMO_CANS := [
 
 const WEAPON_RGB_MASKS := [
 	{
+		"id": "Jaeger_140_Main",
+		"label": "Jaeger 140 / Main",
+		"target_files": [
+			"Jaeger_140"
+		],
+		"target_names": [
+			"Jaeger 140"
+		],
+		"target_textures": [
+			"res://Items/Knives/Jaeger_140/Files/TX_Jaeger_140_AL.png"
+		],
+		"target_texture_names": [
+			"TX_Jaeger_140_AL.png"
+		],
+		"rgb_mask_path": "res://NARK_Camo_Cans/WeaponMasks/Jaeger_140/Main/TX_Jaeger_140_Main_RGB_Mask.png"
+	},
+	{
+		"id": "Skrama_200_Main",
+		"label": "Skrama 200 / Main",
+		"target_files": [
+			"Skrama_200"
+		],
+		"target_names": [
+			"Skrama 200"
+		],
+		"target_textures": [
+			"res://Items/Knives/Skrama_200/Files/TX_Skrama_200_AL.png"
+		],
+		"target_texture_names": [
+			"TX_Skrama_200_AL.png"
+		],
+		"rgb_mask_path": "res://NARK_Camo_Cans/WeaponMasks/Skrama_200/Main/TX_Skrama_200_Main_RGB_Mask.png"
+	},
+	{
+		"id": "Skrama_240_Main",
+		"label": "Skrama 240 / Main",
+		"target_files": [
+			"Skrama_240"
+		],
+		"target_names": [
+			"Skrama 240"
+		],
+		"target_textures": [
+			"res://Items/Knives/Skrama_240/Files/TX_Skrama_240_AL.png"
+		],
+		"target_texture_names": [
+			"TX_Skrama_240_AL.png"
+		],
+		"rgb_mask_path": "res://NARK_Camo_Cans/WeaponMasks/Skrama_240/Main/TX_Skrama_240_Main_RGB_Mask.png"
+	},
+	{
 		"id": "HP_DA_Main",
 		"label": "HP-DA / Main",
 		"target_files": [
@@ -2757,6 +2808,7 @@ var _reward_scan_roots := {}
 var _texture_cache := {}
 var _rig_scan_scene_id := 0
 var _rig_manager_ref: WeakRef
+var _melee_slot_ref: WeakRef
 var _rig_search_after_msec := 0
 const MATERIAL_CACHE_LIMIT := 64
 var _can_textures := {}
@@ -2782,11 +2834,12 @@ func _ready() -> void:
 	set_process(true)
 	randomize()
 	_reward_rng.randomize()
-	_log("autoload loaded - 0.1.6-mesh-test.1")
+	_log("autoload loaded - 0.1.7")
 	call_deferred("_register_mod_content")
 
 
 func _exit_tree() -> void:
+	_melee_slot_ref = null
 	_chroma_materials.clear()
 	_chroma_lights.clear()
 	_compat_cleanup_queued.clear()
@@ -3360,6 +3413,12 @@ func _patch_camo_box_scene(scene: PackedScene, albedo_path: String) -> PackedSce
 
 
 func _on_interface_create_post(slot_data = null, target_grid = null, _use_drop = null, _result = null):
+	if slot_data != null and target_grid is Node and is_instance_valid(target_grid):
+		var item_data = slot_data.get("itemData")
+		if item_data != null and str(item_data.get("type")) == "Knife":
+			var grid_name = str(target_grid.name).to_lower()
+			if grid_name.contains("knife") or grid_name.contains("melee"):
+				_melee_slot_ref = weakref(target_grid)
 	if _reward_placeholder_kind(slot_data) == "":
 		return
 	if target_grid is Node and is_instance_valid(target_grid):
@@ -3770,6 +3829,7 @@ func _register_hooks() -> void:
 		return
 	_lib.hook("interface-combinecheck", _on_interface_combinecheck, 970)
 	_lib.hook("interface-create-post", _on_interface_create_post, 970)
+	_lib.hook("item-combineswap-post", _on_item_combine_swap_post, 970)
 	_lib.hook("weaponrig-_ready-post", _on_weaponrig_ready_post, 970)
 	_lib.hook("weaponrig-reload-post", _on_weaponrig_reload_post, 970)
 	_lib.hook("weaponrig-fireevent-post", _on_weaponrig_fire_post, 970)
@@ -3793,10 +3853,10 @@ func _on_interface_combinecheck(target_item = null, combine_item = null):
 			return
 		if _lib != null and _lib.has_method("skip_super"):
 			_lib.skip_super()
-		if _weapon_item_get_can_id(target_item) != "":
-			return 2
 		_patch_weapon_data_compatible(target_data, _can_data.get(can_id))
 		_queue_weapon_compatible_cleanup(target_data)
+		if _weapon_item_get_can_id(target_item) != "":
+			return 2
 		return 1
 
 	var bat_id := _get_tac_bat_id_from_data(combine_data)
@@ -3805,11 +3865,36 @@ func _on_interface_combinecheck(target_item = null, combine_item = null):
 			return
 		if _lib != null and _lib.has_method("skip_super"):
 			_lib.skip_super()
-		if _weapon_item_get_tac_bat_id(target_item) != "":
-			return 2
 		_patch_weapon_data_compatible(target_data, _tac_bat_data.get(bat_id))
 		_queue_weapon_compatible_cleanup(target_data)
+		if _weapon_item_get_tac_bat_id(target_item) != "":
+			return 2
 		return 1
+
+func _on_item_combine_swap_post(combine_item = null, result = null):
+	if result != null:
+		return
+	var target_item = _get_caller_rig()
+	if not _valid_inventory_item(target_item) or not _valid_inventory_item(combine_item):
+		return
+	if str(target_item.slotData.itemData.get("type")) != "Knife":
+		return
+	var incoming = combine_item.slotData.itemData
+	var is_camo := _get_can_id_from_data(incoming) != ""
+	var is_tac_bat := _get_tac_bat_id_from_data(incoming) != ""
+	if not is_camo and not is_tac_bat:
+		return
+	var nested = target_item.slotData.get("nested")
+	if not (nested is Array):
+		return
+	for i in range(nested.size()):
+		var entry = nested[i]
+		if entry == null:
+			continue
+		if (is_camo and _get_can_id_from_data(entry) != "") or (is_tac_bat and _get_tac_bat_id_from_data(entry) != ""):
+			nested.remove_at(i)
+			return entry
+
 
 func _on_weaponrig_ready_post() -> void:
 	var rig = _get_caller_rig()
@@ -4897,6 +4982,10 @@ func _texture_key(value: String) -> String:
 
 
 func _mask_texture_for_original_material(material):
+	if material != null:
+		var custom_mask_path = str(material.get_meta("nark_customs_rgb_mask", ""))
+		if custom_mask_path != "" and FileAccess.file_exists(custom_mask_path):
+			return _load_png_texture(custom_mask_path)
 	var tex = _material_albedo_texture(material)
 	if tex == null:
 		return null
@@ -5149,12 +5238,64 @@ func _rig_get_can_id(rig) -> String:
 func _get_weapon_item_from_rig(rig):
 	var weapon_slot = rig.get("weaponSlot")
 	if weapon_slot == null or not is_instance_valid(weapon_slot):
+		var data = rig.get("data")
+		if data != null and str(data.get("type")) == "Knife":
+			return _get_melee_item_from_rig(rig)
 		return null
 	if weapon_slot.get_child_count() <= 0:
 		return null
 	var weapon_item = weapon_slot.get_child(0)
 	if weapon_item != null and is_instance_valid(weapon_item):
 		return weapon_item
+	return null
+
+
+func _melee_item_in_slot(slot, data):
+	if not (slot is Node) or not is_instance_valid(slot) or not slot.is_inside_tree():
+		return null
+	if _valid_inventory_item(slot) and str(slot.slotData.itemData.get("file")) == str(data.get("file")):
+		return slot
+	for item in slot.get_children():
+		if _valid_inventory_item(item) and str(item.slotData.itemData.get("file")) == str(data.get("file")):
+			return item
+	return null
+
+
+func _get_melee_item_from_rig(rig):
+	var data = rig.get("data")
+	if data == null:
+		return null
+	var cached = rig.get_meta("nark_customs_melee_slot") if rig.has_meta("nark_customs_melee_slot") else null
+	if cached is WeakRef:
+		var slot = cached.get_ref()
+		if slot is Node and is_instance_valid(slot) and slot.is_inside_tree():
+			return _melee_item_in_slot(slot, data)
+	var shared_slot = _melee_slot_ref.get_ref() if _melee_slot_ref != null else null
+	var shared_item = _melee_item_in_slot(shared_slot, data)
+	if shared_item != null:
+		rig.set_meta("nark_customs_melee_slot", weakref(shared_slot))
+		return shared_item
+	var now = Time.get_ticks_msec()
+	if now < int(rig.get_meta("nark_customs_melee_lookup_after", 0)):
+		return null
+	rig.set_meta("nark_customs_melee_lookup_after", now + 2000)
+	var manager = rig.get("rigManager")
+	if not (manager is Node) or not is_instance_valid(manager):
+		manager = rig.get_parent()
+	if manager == null:
+		return null
+	for property in manager.get_property_list():
+		var property_name = str(property.get("name", ""))
+		var lower_name = property_name.to_lower()
+		if not lower_name.contains("knife") and not lower_name.contains("melee") and not lower_name.contains("slots"):
+			continue
+		var value = manager.get(property_name)
+		var candidates = value if value is Array else [value]
+		for slot in candidates:
+			var item = _melee_item_in_slot(slot, data)
+			if item != null:
+				rig.set_meta("nark_customs_melee_slot", weakref(slot))
+				return item
 	return null
 
 
