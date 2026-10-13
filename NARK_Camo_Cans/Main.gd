@@ -91,7 +91,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -144,7 +144,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -197,7 +197,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -250,7 +250,7 @@ const CAMO_CANS := [
 			4
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -303,7 +303,7 @@ const CAMO_CANS := [
 			4
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -356,7 +356,7 @@ const CAMO_CANS := [
 			4
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -409,7 +409,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -462,7 +462,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -515,7 +515,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -568,7 +568,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -621,7 +621,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -674,7 +674,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -727,7 +727,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -780,7 +780,7 @@ const CAMO_CANS := [
 			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -828,12 +828,12 @@ const CAMO_CANS := [
 			0.71
 		],
 		"slot_tile_values": [
-			2.0,
-			3.0,
-			1.0
+			2,
+			3,
+			1
 		],
 		"weight": 0.25,
-		"value": 10000,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": true,
 		"size": [
@@ -881,12 +881,12 @@ const CAMO_CANS := [
 			0.73
 		],
 		"slot_tile_values": [
-			3.0,
-			2.0,
-			2.0
+			3,
+			2,
+			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -934,12 +934,12 @@ const CAMO_CANS := [
 			0.73
 		],
 		"slot_tile_values": [
-			40.0,
-			2.0,
-			2.0
+			40,
+			2,
+			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -987,12 +987,12 @@ const CAMO_CANS := [
 			0.73
 		],
 		"slot_tile_values": [
-			3.0,
-			3.0,
-			3.0
+			3,
+			3,
+			3
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -1040,12 +1040,12 @@ const CAMO_CANS := [
 			0.71
 		],
 		"slot_tile_values": [
-			2.0,
-			3.0,
-			1.0
+			2,
+			3,
+			1
 		],
 		"weight": 0.25,
-		"value": 10000,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": true,
 		"size": [
@@ -1093,12 +1093,12 @@ const CAMO_CANS := [
 			0.73
 		],
 		"slot_tile_values": [
-			4.0,
-			2.0,
-			2.0
+			4,
+			2,
+			2
 		],
 		"weight": 0.25,
-		"value": 1,
+		"value": 1000,
 		"rarity": 4,
 		"economy_override": false,
 		"size": [
@@ -1116,6 +1116,112 @@ const CAMO_CANS := [
 			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/Files/TX_NARK_CamoCan_FDE_red_ed9572535abe4991.png",
 			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/Files/TX_NARK_CamoCan_FDE_Slot_Green_AL.png",
 			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_FDE/Files/TX_NARK_CamoCan_FDE_Slot_Blue_AL.png"
+		]
+	},
+	{
+		"id": "NARK_CamoCan_Camo_Can_Cobalt",
+		"name": "Camo Can! (Cobalt)",
+		"short_name": "Camo",
+		"mode": "inclusive",
+		"target_preset": "ALL",
+		"target_files": [],
+		"target_names": [],
+		"target_textures": [],
+		"texture_scope": "main",
+		"paint_mode": "rgb_slots",
+		"blend_strength": 0.55,
+		"slot_blend_strengths": [
+			0.35,
+			0.64,
+			0.35
+		],
+		"slot_metallic_values": [
+			0.85,
+			0.83,
+			0.25
+		],
+		"slot_roughness_values": [
+			0.28,
+			0.15,
+			0.65
+		],
+		"slot_tile_values": [
+			4,
+			1,
+			4
+		],
+		"weight": 0.25,
+		"value": 1000,
+		"rarity": 4,
+		"economy_override": false,
+		"size": [
+			1,
+			2
+		],
+		"traders": [],
+		"loot_tables": [],
+		"item_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Cobalt/NARK_CamoCan_Camo_Can_Cobalt.tres",
+		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Cobalt/NARK_CamoCan_Camo_Can_Cobalt.tscn",
+		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Cobalt/Files/Icon_NARK_CamoCan_Camo_Can_Cobalt.png",
+		"spray_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Cobalt/Files/TX_NARK_CamoCan_Camo_Can_Cobalt_Can_AL.png",
+		"paint_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Cobalt/Files/TX_NARK_CamoCan_Camo_Can_Cobalt_Slot_Red_AL.png",
+		"slot_albedo_paths": [
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Cobalt/Files/TX_NARK_CamoCan_Camo_Can_Cobalt_Slot_Red_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Cobalt/Files/TX_NARK_CamoCan_Camo_Can_Cobalt_Slot_Green_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Cobalt/Files/TX_NARK_CamoCan_Camo_Can_Cobalt_Slot_Blue_AL.png"
+		]
+	},
+	{
+		"id": "NARK_CamoCan_Camo_Can_Swamp",
+		"name": "Camo Can! (Swamp)",
+		"short_name": "Camo",
+		"mode": "inclusive",
+		"target_preset": "ALL",
+		"target_files": [],
+		"target_names": [],
+		"target_textures": [],
+		"texture_scope": "main",
+		"paint_mode": "rgb_slots",
+		"blend_strength": 0.64,
+		"slot_blend_strengths": [
+			0.6,
+			0.49,
+			0.72
+		],
+		"slot_metallic_values": [
+			0.15,
+			0.4,
+			0.02
+		],
+		"slot_roughness_values": [
+			0.7,
+			0.36,
+			0.73
+		],
+		"slot_tile_values": [
+			2,
+			2,
+			2
+		],
+		"weight": 0.25,
+		"value": 1000,
+		"rarity": 4,
+		"economy_override": false,
+		"size": [
+			1,
+			2
+		],
+		"traders": [],
+		"loot_tables": [],
+		"item_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Swamp/NARK_CamoCan_Camo_Can_Swamp.tres",
+		"scene_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Swamp/NARK_CamoCan_Camo_Can_Swamp.tscn",
+		"icon_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Swamp/Files/Icon_NARK_CamoCan_Camo_Can_Swamp.png",
+		"spray_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Swamp/Files/TX_NARK_CamoCan_Camo_Can_Swamp_Can_AL.png",
+		"paint_albedo_path": "res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Swamp/Files/TX_NARK_CamoCan_Camo_Can_Swamp_Slot_Red_AL.png",
+		"slot_albedo_paths": [
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Swamp/Files/TX_NARK_CamoCan_Camo_Can_Swamp_Slot_Red_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Swamp/Files/TX_NARK_CamoCan_Camo_Can_Swamp_Slot_Green_AL.png",
+			"res://NARK_Camo_Cans/Items/Attachments/NARK_CamoCan_Camo_Can_Swamp/Files/TX_NARK_CamoCan_Camo_Can_Swamp_Slot_Blue_AL.png"
 		]
 	}
 ]
@@ -2834,7 +2940,7 @@ func _ready() -> void:
 	set_process(true)
 	randomize()
 	_reward_rng.randomize()
-	_log("autoload loaded - 0.1.7")
+	_log("autoload loaded - 0.1.8")
 	call_deferred("_register_mod_content")
 
 
