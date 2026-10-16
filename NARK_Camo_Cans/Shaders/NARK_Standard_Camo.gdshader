@@ -52,21 +52,26 @@ varying vec3 worldPosition;
 varying float bottomMask;
 varying float objectY;
 
-vec3 nark_mask(vec2 uv)
+vec3 nark_raw_mask(vec2 uv)
 {
 	if (!use_rgb_mask)
 	{
-		return vec3(clamp(slot_strengths.r, 0.0, 1.0), 0.0, 0.0);
+		return vec3(1.0, 0.0, 0.0);
 	}
-	vec3 raw_mask = clamp(texture(rgb_mask, uv).rgb, vec3(0.0), vec3(1.0));
-	return raw_mask * clamp(slot_strengths, vec3(0.0), vec3(1.0));
+	return clamp(texture(rgb_mask, uv).rgb, vec3(0.0), vec3(1.0));
 }
 
-vec4 nark_slot_color(vec2 uv, vec3 weights)
+vec3 nark_mask(vec2 uv)
+{
+	return nark_raw_mask(uv) * clamp(slot_strengths, vec3(0.0), vec3(1.0));
+}
+
+vec4 nark_slot_color(vec2 uv, vec3 weights, out vec3 slot_alpha)
 {
 	vec4 red_col = texture(slot_red, uv * max(slot_tiling.r, 0.0001));
 	vec4 green_col = texture(slot_green, uv * max(slot_tiling.g, 0.0001));
 	vec4 blue_col = texture(slot_blue, uv * max(slot_tiling.b, 0.0001));
+	slot_alpha = vec3(red_col.a, green_col.a, blue_col.a);
 
 	float channel_sum = max(weights.r + weights.g + weights.b, 0.0001);
 	vec4 slot_col = ((red_col * weights.r) + (green_col * weights.g) + (blue_col * weights.b)) / channel_sum;
@@ -78,19 +83,38 @@ float nark_mask_amount(vec3 weights)
 	return clamp(max(max(weights.r, weights.g), weights.b), 0.0, 1.0);
 }
 
+vec3 nark_prepare_base(vec3 base_col)
+{
+	float luminance = dot(base_col, vec3(0.2126, 0.7152, 0.0722));
+	float brightness_scale = 0.10 / (luminance + 0.10);
+	return vec3(luminance * brightness_scale);
+}
+
 vec3 nark_camo_color(vec2 uv)
 {
 	vec3 base_col = texture(albedo, uv).rgb;
-	vec3 weights = nark_mask(uv);
+	vec3 raw_mask = nark_raw_mask(uv);
+	vec3 weights = raw_mask * clamp(slot_strengths, vec3(0.0), vec3(1.0));
 	float mask_amount = nark_mask_amount(weights);
 	if (mask_amount <= 0.0001)
 	{
 		return base_col * tint.rgb;
 	}
 
-	vec4 slot_col = nark_slot_color(uv, weights);
+	vec3 slot_alpha;
+	vec4 slot_col = nark_slot_color(uv, weights, slot_alpha);
 	float paint_amount = clamp(mask_amount * slot_col.a * strength, 0.0, 1.0);
-	return mix(base_col, slot_col.rgb, paint_amount) * tint.rgb;
+	if (paint_amount <= 0.0)
+	{
+		return base_col * tint.rgb;
+	}
+	vec3 enabled_channels = vec3(
+		slot_strengths.r > 0.0 ? 1.0 : 0.0,
+		slot_strengths.g > 0.0 ? 1.0 : 0.0,
+		slot_strengths.b > 0.0 ? 1.0 : 0.0);
+	float undercoat_amount = nark_mask_amount(raw_mask * enabled_channels * clamp(slot_alpha, vec3(0.0), vec3(1.0)));
+	vec3 prepared_base = mix(base_col, nark_prepare_base(base_col), undercoat_amount);
+	return mix(prepared_base, slot_col.rgb, paint_amount) * tint.rgb;
 }
 
 float nark_camo_roughness(vec2 uv)
@@ -101,7 +125,8 @@ float nark_camo_roughness(vec2 uv)
 	{
 		return 0.5;
 	}
-	vec4 slot_col = nark_slot_color(uv, weights);
+	vec3 slot_alpha;
+	vec4 slot_col = nark_slot_color(uv, weights, slot_alpha);
 	float paint_amount = clamp(mask_amount * slot_col.a * strength, 0.0, 1.0);
 	float channel_sum = max(weights.r + weights.g + weights.b, 0.0001);
 	float slot_value = dot(clamp(slot_roughness, vec3(0.0), vec3(1.0)), weights) / channel_sum;
@@ -116,7 +141,8 @@ float nark_camo_metallic(vec2 uv)
 	{
 		return 0.0;
 	}
-	vec4 slot_col = nark_slot_color(uv, weights);
+	vec3 slot_alpha;
+	vec4 slot_col = nark_slot_color(uv, weights, slot_alpha);
 	float paint_amount = clamp(mask_amount * slot_col.a * strength, 0.0, 1.0);
 	float channel_sum = max(weights.r + weights.g + weights.b, 0.0001);
 	float slot_value = dot(clamp(slot_metallic, vec3(0.0), vec3(1.0)), weights) / channel_sum;

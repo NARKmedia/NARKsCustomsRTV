@@ -2940,7 +2940,7 @@ func _ready() -> void:
 	set_process(true)
 	randomize()
 	_reward_rng.randomize()
-	_log("autoload loaded - 0.1.8")
+	_log("autoload loaded - 1.1")
 	call_deferred("_register_mod_content")
 
 
@@ -5209,8 +5209,6 @@ void fragment() {
 	vec4 paint_col = texture(paint_albedo, UV);
 	float s = clamp(strength, 0.0, 1.0);
 
-	// Keep this as a transparent top pass, but also scale the overlay color.
-	// That makes small values visibly weaker instead of behaving like an on/off switch.
 	ALBEDO = paint_col.rgb * s;
 	ALPHA = clamp(s * paint_col.a, 0.0, 1.0);
 
